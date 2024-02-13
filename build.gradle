@@ -14,7 +14,8 @@ ext {
 apply from: 'gradle/jib.gradle'
 
 group = 'com.alihmzyv'
-version = 'git rev-parse HEAD'.execute().text.trim()
+def hash = 'git rev-parse --short HEAD'.execute().text.trim()
+version = "${projectVersion}.$hash"
 
 java {
     sourceCompatibility = '17'

@@ -3,8 +3,10 @@ jib {
         image = 'openjdk:17-jdk-slim'
     }
     to {
-        image = "${dockerRegistry}${project.name}"
-        tags = [project.version.toString(), "latest"]
+        image = "${dockerRegistry}/${project.name}"
+        project.afterEvaluate {
+            tags = [project.version.toString(), "latest"]
+        }
         if (dockerRegistryUsername != null) {
             auth.setUsername(dockerRegistryUsername)
         }
