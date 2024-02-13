@@ -1,0 +1,15 @@
+jib {
+    from {
+        image = 'openjdk:17-jdk-slim'
+    }
+    to {
+        image = "${dockerRegistry}${project.name}"
+        tags = [project.version.toString(), "latest"]
+        if (dockerRegistryUsername != null) {
+            auth.setUsername(dockerRegistryUsername)
+        }
+        if (dockerRegistryPassword != null) {
+            auth.setPassword(dockerRegistryPassword)
+        }
+    }
+}
